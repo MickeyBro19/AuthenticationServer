@@ -1,6 +1,8 @@
 package com.mickey.authenticationserver.controller;
 
-import com.mickey.authenticationserver.config.AuthenticationService;
+import com.mickey.authenticationserver.dto.AuthResponse;
+import com.mickey.authenticationserver.dto.LoginRequest;
+import com.mickey.authenticationserver.service.AuthenticationService;
 import com.mickey.authenticationserver.dto.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,5 +25,12 @@ public class AuthController {
 
         return ResponseEntity.ok("User Successfully Registered");
 
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request){
+
+
+        return ResponseEntity.ok(authenticationService.login(request));
     }
 }
