@@ -3,7 +3,7 @@ package com.mickey.authenticationserver.security;
 import com.mickey.authenticationserver.entity.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import org.antlr.v4.runtime.Token;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +14,8 @@ import java.util.Date;
 
 @Service
 public class JwtService {
-    private final String SECRET="MynameismickeyandIambuildinganewprojectauthenticationserver";
-
+    @Value("${jwt.secret}")
+    private String SECRET;
     private Key getSignInKey(){
         return Keys.hmacShaKeyFor(
                 SECRET.getBytes(StandardCharsets.UTF_8)
